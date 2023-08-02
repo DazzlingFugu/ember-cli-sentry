@@ -1,17 +1,12 @@
 /* eslint-disable ember/avoid-leaking-state-in-ember-objects */
 
 import Ember from 'ember';
-import { assign as _assign, merge } from '@ember/polyfills';
 import Service from '@ember/service';
 import { set } from '@ember/object';
 import { typeOf, isPresent } from '@ember/utils';
 
 import RSVP from 'rsvp';
 import Raven from 'raven';
-
-// Ember merge is deprecated as of 2.5, but we need to check for backwards
-// compatibility.
-const assign = _assign || merge;
 
 /**
  * Default available logger service.
@@ -97,7 +92,7 @@ export default Service.extend({
       Raven.debug = debug;
 
       // Keeping existing config values for includePaths, whitelistUrls, for compatibility.
-      const ravenConfig = assign({
+      const ravenConfig = Object.assign({
         environment,
         includePaths,
         whitelistUrls,
